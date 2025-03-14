@@ -1,9 +1,22 @@
 import Job from "../models/jobModel.js";
 
-export const getAlljobs = (req, res) => {};
+export const getAlljobs = async (req, res) => {
+  try {
+    const jobs = await Job.find({});
 
-export const getSingleJob = (req, res) => {
-  res.json({ message: "Single Job" });
+    return res.status(200).json(jobs);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const getSingleJob = async (req, res) => {
+  try {
+    const job = await Job.findById(req.params.id);
+    return res.status(200).json(job);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 export const postJob = async (req, res) => {
@@ -20,9 +33,13 @@ export const postJob = async (req, res) => {
     contactNumber: req.body.contactNumber,
   });
 
-  const createdJob = await newJob.save();
+  try {
+    const createdJob = await newJob.save();
 
-  return res.json(createdJob).status(201);
+    return res.json(createdJob).status(201);
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
 };
 
 export const updateJob = (req, res) => {
