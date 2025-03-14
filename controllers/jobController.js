@@ -7,7 +7,9 @@ export const getSingleJob = (req, res) => {
 };
 
 export const postJob = (req, res) => {
-  res.json({ message: "Post a new job" });
+  console.log(req.body);
+
+  return res.json(req.body);
 };
 
 export const updateJob = (req, res) => {

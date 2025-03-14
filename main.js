@@ -7,6 +7,10 @@ const app = express();
 const PORT = 6969;
 dotenv.config();
 
+//Data understanding middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 //connect Db
 connectDB();
 
