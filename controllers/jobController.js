@@ -1,15 +1,28 @@
-export const getAlljobs = (req, res) => {
-  res.json({ message: "Hi , all the jobs" });
-};
+import Job from "../models/jobModel.js";
+
+export const getAlljobs = (req, res) => {};
 
 export const getSingleJob = (req, res) => {
   res.json({ message: "Single Job" });
 };
 
-export const postJob = (req, res) => {
-  console.log(req.body);
+export const postJob = async (req, res) => {
+  // Validatedata
+  const newJob = new Job({
+    title: req.body.title,
+    jobType: req.body.jobType,
+    description: req.body.description,
+    salary: req.body.salary,
+    location: req.body.location,
+    companyName: req.body.companyName,
+    companyDescription: req.body.companyDescription,
+    contactEmail: req.body.contactEmail,
+    contactNumber: req.body.contactNumber,
+  });
 
-  return res.json(req.body);
+  const createdJob = await newJob.save();
+
+  return res.json(createdJob).status(201);
 };
 
 export const updateJob = (req, res) => {
