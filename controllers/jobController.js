@@ -73,6 +73,12 @@ export const updateJob = async (req, res) => {
   }
 };
 
-export const deleteJob = () => {
-  res.json({ message: "Delete a new job" });
+export const deleteJob = async (req, res) => {
+  try {
+    await Job.findOneAndDelete(req.params.id);
+
+    return res.status(200).json({ message: "Job has been deleted..." });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
 };
