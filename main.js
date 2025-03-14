@@ -1,11 +1,11 @@
 import express from "express";
 import jobRoutes from "./routes/jobsRoute.js";
 import connectDB from "./libs/db.js";
-import { configDotenv } from "dotenv";
+import dotenv from "dotenv";
 
 const app = express();
 const PORT = 6969;
-configDotenv();
+dotenv.config();
 
 //connect Db
 connectDB();
