@@ -13,11 +13,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Use CORS middleware
-const corsOptions = {
-  origin: "http://localhost:5173", //(https://your-client-app.com)
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: "http://localhost:5173", //(https://your-client-app.com)
+//   optionsSuccessStatus: 200,
+// };
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 //connect Db
 connectDB();
